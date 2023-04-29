@@ -1,38 +1,38 @@
-# on: [push]
+on: [push]
 
-# jobs:
-#   publish:
-#     runs-on: ubuntu-latest
-#     permissions:
-#       contents: read
-#       deployments: write
-#     name: Publish to Cloudflare Pages
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v3
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    name: Publish to Cloudflare Pages
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-#       - name: Setup Hugo
-#         uses: peaceiris/actions-hugo@v2
-#         with:
-#           hugo-version: "0.110.0"
-#           extended: true
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.110.0"
+          extended: true
 
-#       - uses: actions/cache@v2
-#         with:
-#           path: /tmp/hugo_cache
-#           key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
-#           restore-keys: |
-#             ${{ runner.os }}-hugomod-
+      - uses: actions/cache@v2
+        with:
+          path: /tmp/hugo_cache
+          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-hugomod-
 
-#       - name: Build
-#         run: hugo --minify
+      - name: Build
+        run: hugo --minify
 
-#       - name: Publish to Cloudflare Pages
-#         uses: cloudflare/pages-action@v1
-#         with:
-#           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-#           accountId: 739fe0451e4119214f9dea1a869d1377
-#           projectName: YOUR_PROJECT_NAME
-#           directory: YOUR_ASSET_DIRECTORY
-#           # Optional: Enable this if you want to have GitHub Deployments triggered
-#           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 739fe0451e4119214f9dea1a869d1377
+          projectName: blog
+          directory: public
+          # Optional: Enable this if you want to have GitHub Deployments triggered
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

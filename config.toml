@@ -1,4 +1,4 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://blog-exh.pages.dev'
 languageCode = 'en-us'
 title = "Rusti-Blog"
 theme = 'PaperMod'
